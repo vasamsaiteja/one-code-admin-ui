@@ -1,0 +1,52 @@
+.list-user-details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+hr {
+  color: grey;
+}
+p {
+  font-size: 20px;
+  font-family: 'Roboto';
+  /* border: 1px solid green; */
+  width: 20%;
+  /* display: flex;
+  justify-content: center;
+  flex-wrap: wrap; */
+  text-align: center;
+}
+.input-type-size {
+  align-self: center;
+}
+.icons-container {
+  /* border: 1px solid green; */
+  align-self: center;
+  padding: 5px;
+}
+.edit-icon {
+  margin-right: 10px;
+}
+.trash-icon {
+  color: red;
+}
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+@media screen and (max-width: 990px) {
+  .email-paragraph {
+    width: 20%;
+    font-size: 15px;
+    align-self: center;
+  }
+  .name-paragraph {
+    font-size: 15px;
+    align-self: center;
+  }
+  .role-paragraph {
+    font-size: 15px;
+    align-self: center;
+  }
+}

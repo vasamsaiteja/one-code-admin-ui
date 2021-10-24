@@ -1,0 +1,33 @@
+.user-information-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+hr {
+  width: 100%;
+  color: grey;
+  margin-bottom: 0;
+}
+.input-checkbox {
+  align-self: center;
+}
+h1 {
+  font-size: 24px;
+  font-family: 'Roboto';
+  /* border: 1px solid green; */
+}
+.user-details-list {
+  list-style-type: none;
+  width: 100%;
+  /* border: 1px solid green; */
+  padding: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+.role-heading {
+  margin-left: 50px;
+}
+.email-heading {
+  margin-left: 120px;
+}

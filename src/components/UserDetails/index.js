@@ -3,7 +3,14 @@ import {Component} from 'react'
 import './index.css'
 
 class UserDetails extends Component {
-  state = {isEdit: false, name: '', email: '', role: ''}
+  state = {
+    isEdit: false,
+    name: '',
+    email: '',
+    role: '',
+    isChecked: false,
+    checkedUsers: [],
+  }
 
   onUserDetails = () => {
     const {eachUser} = this.props
@@ -19,17 +26,17 @@ class UserDetails extends Component {
 
   updateName = event => {
     this.setState({name: event.target.value})
-    console.log(event.target.value)
+    // console.log(event.target.value)
   }
 
   updateEmail = event => {
     this.setState({email: event.target.value})
-    console.log(event.target.value)
+    // console.log(event.target.value)
   }
 
   updateRole = event => {
     this.setState({role: event.target.value})
-    console.log(event.target.value)
+    // console.log(event.target.value)
   }
 
   onSelectedUser = () => {
@@ -49,20 +56,39 @@ class UserDetails extends Component {
     this.setState(prevState => ({isEdit: !prevState.isEdit}))
   }
 
-  render() {
-    const {eachUser, deleteUser, checkedUser} = this.props
+  handleCheck = e => {
+    const isChecked = e.target.checked
+    this.setState({isChecked: isChecked})
+  }
+  onSelectUserData = () => {
+    // console.log('onSelectUserData', eachUser)
+    const {eachUser, checkedUser} = this.props
+    const {isChecked} = this.state
 
+    const {id} = eachUser
+    console.log('in function', isChecked)
+    if (!isChecked) {
+      checkedUser(id)
+    }
+  }
+  handleSubmit = e => {
     const {name, email, role} = this.state
+
+    e.preventDefault()
+    this.props.handleEdit(this.props.eachUser.id, name, email, role)
+    this.setState({isEdit: false})
+  }
+  render() {
+    const {eachUser, deleteUser} = this.props
+
+    const {name, email, role, isChecked} = this.state
     const {isEdit} = this.state
     const {id} = eachUser
 
     const onDelete = () => {
       deleteUser(id)
     }
-
-    const onSelectUserData = () => {
-      checkedUser(id)
-    }
+    console.log('in render', isChecked)
 
     return (
       <>
@@ -70,15 +96,18 @@ class UserDetails extends Component {
           <input
             type="checkbox"
             className="input-type-size"
-            onClick={onSelectUserData}
+            checked={isChecked}
+            onClick={this.onSelectUserData}
+            onChange={this.handleCheck}
           />
 
           {isEdit ? (
-            <>
+            <form onSubmit={this.handleSubmit}>
               <input type="text" value={name} onChange={this.updateName} />
               <input type="text" value={email} onChange={this.updateEmail} />
               <input type="text" value={role} onChange={this.updateRole} />
-            </>
+              <input type="submit" value="submit" />
+            </form>
           ) : (
             this.onUserDetails()
           )}

@@ -8,7 +8,7 @@ class Pagination extends Component {
       usersPerPage,
       totalUsers,
       paginate,
-      selectedUserData,
+
       deleteCheckedUser,
     } = this.props
     const pageNumbers = []
@@ -18,13 +18,7 @@ class Pagination extends Component {
     }
 
     const onDeleteSelectedUsers = () => {
-      for (let i = 0; i < selectedUserData.length; i++) {
-        const id = selectedUserData[i]
-        console.log(id)
-        deleteCheckedUser(id)
-      }
-
-      //   deleteCheckedUser(id)
+      deleteCheckedUser()
     }
 
     return (
